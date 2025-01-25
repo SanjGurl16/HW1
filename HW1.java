@@ -214,10 +214,10 @@ public class HW1 {
             int largestK = -1; // Initialize largestK to -1, which will store the index of the largest 'k' found
             int index = 0; // Initialize index to keep track of the position in the stack
 
-            while (!stack.isEmpty) { // Loop through the original stack to find the largest occurrence of 'k'
+            while (!stack.isEmpty()) { // Loop through the original stack to find the largest occurrence of 'k'
                 int value = stack.pop(); // Pop a value from the stack
                 if (value == k) { // If the value matches 'k', update largestK with the current index
-                    largestk = index;
+                    largestK = index;
                 }
                 tempStack.push(value); // Push the value to the temporary stack to preserve the original order
                 index++; // Increment the index
