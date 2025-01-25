@@ -1,6 +1,6 @@
 
 /*
- * *** PLACE YOUR NAME / SECTION  HERE ***
+ * *** Sanjana Kaushik / COMP 272 ***
  *
  * Homework # 1 (Programming Assignment). This Java class defines some basic
  * manipulation operations on Linked-Lists and Stacks.
@@ -87,8 +87,18 @@ public class HW1 {
          */
         public void removeElementsLT ( int ltValue ) {
 
-            // YOUR CODE GOES HERE
+            while (this.head != null && this.head.data < ltValue) { // Remove nodes from the start of the list with values less than ltValue
+                this.head = this.head.next; // Move the head pointer to the next node
+            }
 
+            Node current = this.head; // Start traversing from the updated head
+            while (current != null && current.next  != null) { // Traverse the list to remove nodes with values less than the ltValue
+                if (current.next.data < ltValue) {
+                    current.next = current.next.next; // Skip the next node
+                } else {
+                    current = current.next; // Move to the next node
+                }
+            }
             return;
         }
 
@@ -100,7 +110,18 @@ public class HW1 {
 
         public void removeElement ( int value ) {
 
-            // YOUR CODE GOES HERE
+            while (this.head != null && this.head.data == value) { // Remove nodes at the start of the list that match the value
+                this.head = this.head.next; // Move the head to the next node
+            }
+
+            Node current = this.head; // Start from the updated head mode
+            while (current != null && current.next != null) { // Loop to traverse the list and remove nodes with the specified value
+                if (current.next.data == value) { // If the next node's value matches the value to remove
+                    current.next = current.next.next; // Skip the next node
+                } else {
+                    current = current.next; // Move to the next node
+                }
+            }
 
             return;
         }
@@ -160,8 +181,16 @@ public class HW1 {
             Stack<Character> stack = new Stack<>();
             input = input.toLowerCase().replaceAll("\\s+", "");
 
-            // Your CODE GOES HERE
-            return false;
+            for (char c : input.toCharArray()) { // Push all characters of the string onto the stack
+                stack.push(c); // Add each character to the stack
+            }
+
+            for (char c : input.toCharArray()) { // Compare each character in the string with the character popped from the stack
+                if (stack.pop() != c) { // If the character from the stack doesn't match the current character
+                    return false; // Return false if it's not a palindrome
+                }
+            }
+            return true; // Return true if the string is a palindrome
         }
 
 
@@ -181,9 +210,24 @@ public class HW1 {
          * completed, place them all back in teh original stack.
          */
         public static int findLargestK(Stack<Integer> stack, int k) {
+            Stack<Integer> tempStack = new Stack<>(); // Create a temporary stack to help reverse the order and keep original stack intact
+            int largestK = -1; // Initialize largestK to -1, which will store the index of the largest 'k' found
+            int index = 0; // Initialize index to keep track of the position in the stack
 
-            // YOUR CODE GOES HERE
-            return -1;
+            while (!stack.isEmpty) { // Loop through the original stack to find the largest occurrence of 'k'
+                int value = stack.pop(); // Pop a value from the stack
+                if (value == k) { // If the value matches 'k', update largestK with the current index
+                    largestk = index;
+                }
+                tempStack.push(value); // Push the value to the temporary stack to preserve the original order
+                index++; // Increment the index
+            }
+
+            while (!tempStack.isEmpty()) { // Move all values from the temporary stack back to the original stack to restore it
+                stack.push(tempStack.pop());
+            }
+            
+            return largestK; // Return the index of the largest 'k', or -1 if not found
         }
 
     }  // End class Stacks
@@ -219,7 +263,7 @@ public class HW1 {
         */
 
         // RETURN THE CORRECT OPTION NUMBER LISTED ABOVE
-        return -1;
+        return 3; 
     }
 
 
@@ -240,7 +284,7 @@ public class HW1 {
          */
 
         // RETURN THE CORRECT OPTION LISTED ABOVE
-        return -1;
+        return 2;
     }
 
 }
