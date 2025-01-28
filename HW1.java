@@ -211,16 +211,17 @@ public class HW1 {
          */
         public static int findLargestK(Stack<Integer> stack, int k) {
             Stack<Integer> tempStack = new Stack<>(); // Temporary stack for restoring the original stack
-            int index = stack.size() - 1; // Start index from the top of the stack
+            int currentIndex = stack.size() - 1; // Start index from the top of the stack
             int largestK = -1; // Initialize largestK to -1 (not found)
         
             while (!stack.isEmpty()) { // Loop through the original stack
                 int value = stack.pop(); // Pop the top value
-                if (value == k) { // Check if the value matches 'k'
-                    largestK = index; // Update largestK to the current index
-                }
                 tempStack.push(value); // Push the value to the temporary stack
-                index--; // Decrement the index
+
+                if (value == k && currentIndex > largestK) { // Check if the value matches 'k'
+                    largestK = currentIndex; // Update largestK to the current index
+                }
+                currentIndex--; // Decrement the index
             }
         
             while (!tempStack.isEmpty()) { // Restore the original stack
