@@ -210,25 +210,25 @@ public class HW1 {
          * completed, place them all back in teh original stack.
          */
         public static int findLargestK(Stack<Integer> stack, int k) {
-            Stack<Integer> tempStack = new Stack<>(); // Initialize a temporary stack 
-            int largestK = -1; // Initialize largestK to -1
-            int index = stack.size() - 1; // Initialize index from top of stack
-
-            while (!stack.isEmpty()) { // Loop through the original stack to find the largest occurrence of 'k'
-                int value = stack.pop(); // Pop a value 
-                if (value == k) { // If the value matches 'k'
-                    largestK = index; // Update largestK with the current index
+            Stack<Integer> tempStack = new Stack<>(); // Temporary stack for restoring the original stack
+            int index = stack.size() - 1; // Start index from the top of the stack
+            int largestK = -1; // Initialize largestK to -1 (not found)
+        
+            while (!stack.isEmpty()) { // Loop through the original stack
+                int value = stack.pop(); // Pop the top value
+                if (value == k) { // Check if the value matches 'k'
+                    largestK = index; // Update largestK to the current index
                 }
-                tempStack.push(value); // Push to tempstack
+                tempStack.push(value); // Push the value to the temporary stack
                 index--; // Decrement the index
             }
-
-            while (!tempStack.isEmpty()) { // Restore the stack
+        
+            while (!tempStack.isEmpty()) { // Restore the original stack
                 stack.push(tempStack.pop());
             }
-            
+        
             return largestK; // Return the index of the largest 'k', or -1 if not found
-        }
+        }        
 
     }  // End class Stacks
 
